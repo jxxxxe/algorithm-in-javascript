@@ -7,27 +7,18 @@ function solution(n, results) {
         
         record[winner-1][looser-1] = 1;
     }
-    
-    
-    for (let i=0; i<n; i++) {
-        for (let j=0; j<n; j++) {
-            for (let k=0; k<n; k++) {
-                if (record[i][j] && record[i][j] === record[j][k]) {
-                    record[i][k] = 1;
+            
+    for (let i=0; i<n; i++) { 0
+        for (let j=0; j<n; j++) { 1
+            for (let k=0; k<n; k++) { 0
+                if (record[j][i] && record[i][k]) {
+                    record[j][k] = 1;
                 }
             }
         }
     }
     
-    for (let i=0; i<n; i++) {
-        for (let j=0; j<n; j++) {
-            for (let k=0; k<n; k++) {
-                if (record[i][j] && record[i][j] === record[j][k]) {
-                    record[i][k] = 1;
-                }
-            }
-        }
-    }
+    console.log(record);
     
     for (let i=0;i<n;i++) {
         let sum = 0;
