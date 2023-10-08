@@ -1,10 +1,6 @@
 function solution(n, results) {
     let answer = 0;
-    let record = new Array(n).fill(0).map(val => new Array(n).fill(0));
-
-    // let record = new Array(n).fill(new Array(n).fill(0));
-    // => 잘못된 코드, 같은 배열(new Array(n).fill(0))로 0~n-1행이 채워짐
-    
+    let record = new Array(n).fill(0).map(val => new Array(n).fill(0));    
     
     for (const result of results) {
         const [winner, looser] = result;
