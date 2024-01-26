@@ -1,2 +1,1 @@
-# algorithm-in-javascript
-This is a auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
+다 풀어버리는 나는야 알고머신 with JavaScript
