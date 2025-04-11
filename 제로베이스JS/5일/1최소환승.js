@@ -15,11 +15,13 @@ function solution(subway, S, E) {
 
   var deque = [S];
   var count = 0;
-  var visited = new Set([S]);
+  var visited = new Set([]);
   while (deque.length) {
     const len = deque.length;
+    const next = [];
     for (let i = 0; i < len; i++) {
       var cur = deque.pop();
+      visited.add(cur);
       for (let num of dict[cur]) {
         if (visited.has(num)) {
           continue;
@@ -27,10 +29,10 @@ function solution(subway, S, E) {
         if (num === E) {
           return count;
         }
-        deque.push(num);
-        visited.add(num);
+        next.push(num);
       }
     }
+    deque = [...next];
     count++;
   }
 

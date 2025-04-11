@@ -1,27 +1,39 @@
 function solution(s) {
-  // 1. 개수 => 최대짝수
-  // 2. 개수총합/2 => 길이
-  // 3. 종류C길이 = 팩토리얼(길이만큼)/(종류-길이)
-  const set = new Set([]);
-  let count = 0;
-  for (let al of s) {
-    if (!set.has(al)) {
-      set.add(al);
-      var alCnt = s.split(al).length - 1;
-      count += alCnt % 2 === 0 ? alCnt : alCnt - 1;
+  const set = Array.from(new Set(s));
+  let isOdd = false;
+  let typeCount = [];
+  let sum = 0;
+  for (let alpha of set) {
+    var alCnt = s.split(alpha).length - 1;
+    if (alCnt % 2 === 1) {
+      if (isOdd) {
+        return 0;
+      }
+      isOdd = true;
     }
-  }
-  if (set.size === s.length) {
-    return 0;
-  }
-  var answer = 1;
-  var num = set.size;
-  for (let i = 0; i < count / 2; i++) {
-    answer *= num;
-    num--;
+    typeCount.push(Math.floor(alCnt / 2));
+    sum += alCnt;
   }
 
-  return answer / (set.size - count / 2);
+  function facto(num) {
+    var result = 1;
+    for (let i = 1; i <= num; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  const halfSize = Math.floor(sum / 2);
+  let answer = facto(halfSize);
+  for (let count of typeCount) {
+    let fc = facto(count);
+    answer /= fc;
+  }
+
+  return answer;
 }
 
-console.log(solution("aabbbcc"));
+console.log(solution("aabbccc"));
+/**
+ * abc
+ */
