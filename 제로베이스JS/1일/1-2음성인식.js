@@ -1,28 +1,25 @@
 function solution(call) {
-  var maxIdx = [];
-  var maxCnt = 0;
-  var lowerCall = call.toLowerCase();
-
-  for (let i = 0; i < lowerCall.length; i++) {
-    var count = 1;
-    for (let j = i + 1; j < lowerCall.length; j++) {
-      if (lowerCall[i] === lowerCall[j]) {
-        count += 1;
-      }
-    }
-    if (maxCnt === count) {
-      maxIdx.push(i);
-    } else if (maxCnt < count) {
-      maxIdx = [i];
+  var answer = "";
+  const alpas = new Set(call.toLowerCase());
+  let maxAlp = new Set([]);
+  let maxCnt = 0;
+  for (let alpa of alpas) {
+    const count = call.toLowerCase().split(alpa).length - 1;
+    if (maxCnt < count) {
+      maxAlp = new Set([alpa]);
+      maxCnt = count;
+    } else if (maxCnt === count) {
+      maxAlp.add(alpa);
       maxCnt = count;
     }
   }
-  str = call;
-  for (var idx of maxIdx) {
-    str = str.replaceAll(call[idx].toLowerCase(), "");
-    str = str.replaceAll(call[idx].toUpperCase(), "");
+  for (let c of call) {
+    if (!maxAlp.has(c.toLowerCase())) {
+      answer += c;
+    }
   }
-  return str;
+
+  return answer;
 }
 
 solution("ABCabcA");

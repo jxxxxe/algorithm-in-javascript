@@ -1,28 +1,27 @@
 function solution(s, e) {
+  const MAX = 200000;
   var answer = 0;
-  var deque = [s];
+  var stack = [s];
   var cowMove = 1;
 
-  while (deque.length) {
-    var count = deque.length;
-    if (e > 200000) {
+  while (stack.length) {
+    var count = stack.length;
+    if (e > MAX) {
       return -1;
     }
     var setq = new Set([]);
     for (let i = 0; i < count; i++) {
-      var de = deque.shift(); //
+      var de = stack.pop();
       if (de === e) {
-        console.log(answer);
         return answer;
       }
       for (var value of [de - 1, de + 1, de * 2]) {
-        //
-        if (!setq.has(value) && value > 0 && value <= 200000) {
-          deque.push(value);
+        if (value > 0 && value <= MAX) {
           setq.add(value);
         }
       }
     }
+    stack = Array.from(setq);
     answer += 1;
     e += cowMove;
     cowMove += 1;
